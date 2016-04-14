@@ -1,0 +1,46 @@
+<coordinator-app name="test"
+  frequency="${coord:days(1)}"
+  start="2016-04-10T06:00Z" end="2017-02-26T23:25Z" timezone="GMT"
+  xmlns="uri:oozie:coordinator:0.2">
+  <datasets>
+    <dataset name="inputdataset" frequency="${coord:days(1)}"
+             initial-instance="2016-04-10T06:00Z" timezone="GMT">
+      <uri-template>${nameNode}/user/root/input/${YEAR}${MONTH}${DAY}</uri-template>
+      <done-flag></done-flag>
+    </dataset>
+    <dataset name="outputdataset" frequency="${coord:days(1)}"
+             initial-instance="2016-04-10T06:00Z" timezone="GMT">
+      <uri-template>${nameNode}/user/root/output/${YEAR}${MONTH}${DAY}</uri-template>
+      <done-flag></done-flag>
+    </dataset>
+  </datasets>
+
+  <input-events>
+      <data-in name="inputevent" dataset="inputdataset">
+          <instance>${coord:current(0)}</instance>
+      </data-in>
+  </input-events>
+
+  <output-events>
+      <data-out name="outputevent" dataset="outputdataset">
+          <instance>${coord:current(0)}</instance>
+      </data-out>
+  </output-events>
+
+  <action>
+    <workflow>
+      <app-path>${workflowAppUri}</app-path>
+            <configuration>
+                <property>
+                    <name>inputDir</name>
+                    <value>${coord:dataIn('inputevent')}</value>
+                </property>
+                <property>
+                    <name>outputDir</name>
+                    <value>${coord:dataOut('outputevent')}</value>
+                </property>
+            </configuration>
+   </workflow>
+  </action>
+</coordinator-app>
+

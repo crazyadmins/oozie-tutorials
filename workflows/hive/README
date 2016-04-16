@@ -1,0 +1,20 @@
+Welcome to oozie-tutorials by crazyadmins.com
+####################
+
+How to run oozie workflow with hive action
+
+1. Copy workflow.xml, job.properties and script.q to your working directory.
+
+2. Modify job.properties & script.q as per your cluster environment.
+
+3. Put workflow.xml and script.q on hdfs at ${oozie.wf.application.path} given in job.properties file
+
+4. Submit oozie workflow using below command
+
+oozie job -oozie http://<oozie-server>:11000/oozie -config $working_dir/job.properties -run
+
+
+Please visit http://crazyadmins.com for cool hadoop stuff!
+
+
+Thank you!! Happy Hadooping :-)

@@ -13,6 +13,8 @@ How to run oozie workflow with shell action?
 
 oozie job -oozie http://<oozie-server>:11000/oozie -config $working_dir/job.properties -run
 
+5. You can check output of your shell script at local file /tmp/output on nodemanager where task was run.
+
 
 Please visit http://crazyadmins.com/tag/oozie-shell-action/ for more details.
 

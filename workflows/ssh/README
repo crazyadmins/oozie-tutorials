@@ -1,0 +1,51 @@
+Welcome to oozie-tutorials by crazyadmins.com
+####################
+
+Prerequisites:
+
+1. Shell script must be present on remote host at given path.
+
+2. Shell script will be executed in home directory of specified use on remote host.
+
+3. Password-less ssh must be set from oozie@<oozie-host> to user@<remote-host>
+
+To Configure passwordless ssh:
+
+3.1 Login to Oozie server host via oozie user
+
+3.2 Run below command ( press enter for every question to keep all the options default )
+
+ssh-keygen
+
+3.3 On Oozie host copy contents of ~/.ssh/id_rsa.pub and paste it in <remote-host>’s ~/.ssh/authorized_keys file
+
+3.4 Please make sure to have below permissions in order to get password-less ssh working successfully
+
+700 to ~/.ssh directory on oozie as well as remote-host
+600  to ~/.ssh/authorized_keys file on remote-host
+600 to ~/.ssh/id_rsa on oozie host
+644 on ~/.ssh/id_rsa.pub on oozie host
+
+3.5 Test ssh from oozie@<oozie-host> to <username>@<remote-host>, ssh command should work without password.
+
+
+How to Run?
+
+1. Copy workflow.xml, job.properties and test.sh to your working directory.
+
+2. Modify job.properties as per your cluster environment.
+
+3. Copy/Move test.sh to ${shellScriptPath} on remote node as per job.properties
+
+4. Upload workflow.xml to the HDFS at ${appPath} defined in job.properties.
+
+5. Submit Oozie workflow using below command
+
+oozie job -oozie http://<oozie-host>:11000/oozie -config $local-path/job.properties -run
+
+
+
+Please visit http://crazyadmins.com/oozie-tutorials-ssh-action/ for more details.
+
+
+Thank you!! Happy Hadooping :-)

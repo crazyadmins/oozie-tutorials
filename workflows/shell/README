@@ -1,0 +1,20 @@
+Welcome to oozie-tutorials by crazyadmins.com
+####################
+
+How to run oozie workflow with shell action?
+
+1. Copy workflow.xml, job.properties and test.sh to your working directory.
+
+2. Modify job.properties as per your cluster environment.
+
+3. Put workflow.xml and test.sh on hdfs at ${oozie.wf.application.path} given in job.properties file
+
+4. Submit oozie workflow using below command
+
+oozie job -oozie http://<oozie-server>:11000/oozie -config $working_dir/job.properties -run
+
+
+Please visit http://crazyadmins.com/tag/oozie-shell-action/ for more details.
+
+
+Thank you!! Happy Hadooping :-)
